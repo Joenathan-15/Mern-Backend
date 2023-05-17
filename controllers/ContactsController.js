@@ -1,8 +1,10 @@
-const getcontacts = (req , res) => {
-    res.status(200).json({'message':'Get all contacts'})
-}
+const asyncHandler = require("express-async-handler")
 
-const createcontacts = (req , res) => {
+const getcontacts = asyncHandler(async (req , res) => {
+    res.status(200).json({'message':'Get all contacts'})
+});
+
+const createcontacts = asyncHandler(async (req , res) => {
     console.log("Te request body is :", req.body);
     const {name, email, phone} = req.body
     if(!name || !email || !phone){
@@ -10,19 +12,19 @@ const createcontacts = (req , res) => {
         throw new Error("All field are required")
     }
     res.status(201).json({'message':'create new contacts'})
-}
+});
 
-const getsinglecontacts = (req , res) => {
+const getsinglecontacts = asyncHandler(async (req , res) => {
     res.status(200).json({'message':`Get contacts for ${req.params.id}`})
-}
+})
 
-const updatecontacts = (req , res) => {
+const updatecontacts = asyncHandler(async (req , res) => {
     res.status(200).json({'message':`Update contacts for ${req.params.id}`})
-}
+});
 
-const deletecontacts = (req , res) => {
+const deletecontacts = asyncHandler(async (req , res) => {
     res.status(200).json({'message':`delete contacts for ${req.params.id}`})
-}
+});
 
 
 module.exports = {getcontacts,createcontacts,getsinglecontacts,updatecontacts,deletecontacts}
