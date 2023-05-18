@@ -8,6 +8,7 @@ const port = process.env.PORT
 connectDb()
 app.use(express.json());
 app.use('/api/contacts', require("../backend/routes/ContactsRoutes"));
+app.use('/api/users', require("../backend/routes/UsersRoutes"));
 app.use(errorHandler);
 
 app.listen(port,() =>{
