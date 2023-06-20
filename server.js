@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require('dotenv').config()
 const errorHandler = require("./middleware/errorHandler");
 const app = express()
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 
 const connectDb = async () => {
     try{
