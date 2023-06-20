@@ -15,8 +15,8 @@ const connectDb = async () => {
     }
 }
 
-app.all('*', (req,res) => {
-    res.json({"message":"Page Not Found"})
+app.all('/', (req,res) => {
+    res.json({"message":"Welcome to Page"})
 })
 app.use(express.json());
 app.use('/api/users', require("./routes/UsersRoutes"));
@@ -26,7 +26,5 @@ app.use(errorHandler);
 
 
 connectDb().then(() => {
-    app.listen(port,() =>{
-        console.log(`server running in port ${port}`)
-    })
+    app.listen(process.env.PORT || 3000)
 })
