@@ -2,8 +2,17 @@ const express = require('express');
 const mongoose = require("mongoose");
 const dotenv = require('dotenv').config()
 const errorHandler = require("./middleware/errorHandler");
+const cors = require('cors')
 const app = express()
 const port = process.env.PORT || 3000
+
+
+const corsOptions = {
+    origin: 'https://joenathan.site', // Replace with your actual domain
+    credentials: true, // Allow sending credentials (cookies)
+  };
+
+app.use(cors(corsOptions))
 
 const connectDb = async () => {
     try{
@@ -26,5 +35,5 @@ app.use(errorHandler);
 
 
 connectDb().then(() => {
-    app.listen(process.env.PORT || 3000)
+    app.listen(port)
 })
